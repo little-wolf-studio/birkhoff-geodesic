@@ -53,13 +53,13 @@ class Curve:
 
         # Compute the initial curve, the straight line joining the start point to the end point
         self.points = np.asarray([self.start_point], dtype='float64')
-        for i in xrange(0, int(self.number_of_nodes-1)):
+        for i in range(0, int(self.number_of_nodes-1)):
             self.points = np.concatenate((self.points, [np.add(self.points[i], self.tangent)]), axis=0)
         np.concatenate((self.points, [self.end_point]), axis=0)
 
         # Create and definite initial node_movable configuration. In this case even numbered nodes first.
         self.default_initial_state = np.zeros(self.number_of_nodes, dtype='int')
-        for i in xrange(self.number_of_nodes-1):
+        for i in range(self.number_of_nodes-1):
             if i % 2 != 0:
                 self.default_initial_state[i] = 2
 
@@ -123,7 +123,7 @@ class Curve:
         self.nodes_moved[node_number] = 0
         self.number_of_distinct_nodes_moved = sum(self.nodes_moved)
 
-    def next(self):
+    def __next__(self):
         """ Determine next movable node, given existing information about previously distributed nodes. Used to ensure
             the curve object is Python iterable.
 
