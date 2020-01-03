@@ -28,12 +28,15 @@ alpha = 0.65
 n = alpha*np.ones(dimension)
 n[0] = 0
 
+
 # Define function to describe metric coefficient
 def metric_coefficient(x):
-    return exp(-np.inner(n,x))
+    return exp(-np.inner(n, x))
+
 
 def metric_coefficient_gradient(x):
-    return -n * exp(-np.inner(n,x))
+    return -n * exp(-np.inner(n, x))
+
 
 print('Starting Example Calculation...')
 

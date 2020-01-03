@@ -59,6 +59,7 @@ class Curve:
 
         # Create and definite initial node_movable configuration. In this case even numbered nodes first.
         self.default_initial_state = np.zeros(self.number_of_nodes, dtype='int')
+        # TODO: can be replaced by  self.default_initial_state[1:-1:2] = 2?
         for i in range(self.number_of_nodes-1):
             if i % 2 != 0:
                 self.default_initial_state[i] = 2

@@ -53,7 +53,7 @@ def generate_points(x, start_point, end_point, rotation_matrix, total_number_of_
         points.append(np.add(start_point, float(i)*tangent))
 
     # Shift the points as encoded in x
-    for i in range(0, len(x)/co_dimension):
+    for i in range(0, len(x)//co_dimension):
 
         # Embed vector i into co_dimension + 1 dimensional space
         unrotated_shift = np.hstack((np.zeros(1), x[i*co_dimension:(i+1)*co_dimension]))
@@ -311,11 +311,11 @@ def find_geodesic_midpoint(start_point, end_point, number_of_inner_points, dimen
     # Compute the midpoint
     if number_of_inner_points % 2 == 1:
         # If there is an odd number of inner points then return the middle element of the array
-        midpoint = points[(number_of_inner_points + 1) / 2]
+        midpoint = points[(number_of_inner_points + 1) // 2]
     else:
         # If there is an even number of inner points return the midpoint of the two middle points - this prevents
         # artificial movement of the curve due to the algorithm.
-        midpoint = 0.5 * (points[number_of_inner_points / 2] + points[(number_of_inner_points / 2) + 1])
+        midpoint = 0.5 * (points[number_of_inner_points // 2] + points[(number_of_inner_points // 2) + 1])
 
     # Return the node number and new midpoint
     return [node_number, midpoint]
