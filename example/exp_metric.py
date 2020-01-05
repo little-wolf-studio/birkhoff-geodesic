@@ -28,14 +28,17 @@ alpha = 0.65
 n = alpha*np.ones(dimension)
 n[0] = 0
 
+
 # Define function to describe metric coefficient
 def metric_coefficient(x):
-    return exp(-np.inner(n,x))
+    return exp(-np.inner(n, x))
+
 
 def metric_coefficient_gradient(x):
-    return -n * exp(-np.inner(n,x))
+    return -n * exp(-np.inner(n, x))
 
-print 'Starting Example Calculation...'
+
+print('Starting Example Calculation...')
 
 # Create curve object for calculation
 curve = Curve(start_point, end_point, number_of_global_nodes)
@@ -45,4 +48,4 @@ compute_geodesic(curve, number_of_local_nodes, maximum_average_node_movement, me
                  metric_coefficient_gradient, number_of_cpu)
 
 # Print shortened curve points
-print curve.get_points()
+print(curve.get_points())

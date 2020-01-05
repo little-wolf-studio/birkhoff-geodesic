@@ -6,14 +6,14 @@ import math
 try:
     import numpy as np
 except ImportError as e:
-    print 'NumPy is not installed. Try to run *pip install numpy*.'
+    print('NumPy is not installed. Try to run *pip install numpy*.')
     quit()
 
 try:
     from scipy.optimize import fmin_l_bfgs_b, check_grad
     from scipy.linalg import orth
 except ImportError as e:
-    print 'SciPy is not installed. Try to run *pip install scipy*.'
+    print('SciPy is not installed. Try to run *pip install scipy*.')
     quit()
 
 
@@ -49,11 +49,11 @@ def generate_points(x, start_point, end_point, rotation_matrix, total_number_of_
     points = []
 
     # Generate points that are uniformly distributed along the initial line
-    for i in xrange(total_number_of_points):
+    for i in range(total_number_of_points):
         points.append(np.add(start_point, float(i)*tangent))
 
     # Shift the points as encoded in x
-    for i in xrange(0, len(x)/co_dimension):
+    for i in range(0, len(x)//co_dimension):
 
         # Embed vector i into co_dimension + 1 dimensional space
         unrotated_shift = np.hstack((np.zeros(1), x[i*co_dimension:(i+1)*co_dimension]))
@@ -181,7 +181,7 @@ def length(x, start_point, end_point, rotation_matrix, total_number_of_points, c
     # Initialise a list to store the gradient
     g = []
 
-    for i in xrange(1, len(points)-1):
+    for i in range(1, len(points)-1):
 
         # Compute the quantities needed for the next trapezoidal rule approximation.
         n = np.subtract(points[i+1], points[i])
@@ -233,7 +233,7 @@ def get_rotation(start_point, end_point, dimension):
 
     # For the remaining dim - 1 columns choose unit basis vectors of the form (0,...,0,1,0,...,0) with the nonzero entry
     # not in position j.
-    for i in xrange(1, dimension):
+    for i in range(1, dimension):
         if j != i:
             e = np.zeros(dimension)
             e[i] = 1
@@ -301,7 +301,7 @@ def find_geodesic_midpoint(start_point, end_point, number_of_inner_points, dimen
 
     # If something went wrong with the L-BFGS algorithm print an error message for the end user
     if detail['warnflag'] != 0:
-        print 'BFGS Warning:' + detail['task']
+        print('BFGS Warning:' + detail['task'])
 
 
     # Convert the obtained geodesic from it's shift description to the full point description
@@ -311,11 +311,11 @@ def find_geodesic_midpoint(start_point, end_point, number_of_inner_points, dimen
     # Compute the midpoint
     if number_of_inner_points % 2 == 1:
         # If there is an odd number of inner points then return the middle element of the array
-        midpoint = points[(number_of_inner_points + 1) / 2]
+        midpoint = points[(number_of_inner_points + 1) // 2]
     else:
         # If there is an even number of inner points return the midpoint of the two middle points - this prevents
         # artificial movement of the curve due to the algorithm.
-        midpoint = 0.5 * (points[number_of_inner_points / 2] + points[(number_of_inner_points / 2) + 1])
+        midpoint = 0.5 * (points[number_of_inner_points // 2] + points[(number_of_inner_points // 2) + 1])
 
     # Return the node number and new midpoint
     return [node_number, midpoint]
