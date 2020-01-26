@@ -132,3 +132,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+
+# Profiling outputs
+*.cachegrind
+*.callgrind
+*.lprof
+*.cprof
+
+# Backup files
+*.bak
+
+/.idea
