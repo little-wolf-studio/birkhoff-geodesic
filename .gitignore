@@ -138,8 +138,10 @@ dmypy.json
 *.callgrind
 *.lprof
 *.cprof
+scalene
 
 # Backup files
 *.bak
 
 /.idea
+
